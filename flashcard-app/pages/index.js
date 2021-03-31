@@ -9,7 +9,7 @@ export default function Home(){
             <section className="hero is-fullheight is-info">
                 <div className="hero-head center">
                     <div className={`block ${styles.title}`}>
-                        <p className="title">Flashcards</p>
+                        <p className="title">FLASHCARDS</p>
                     </div>
                 </div>
 
@@ -28,10 +28,8 @@ export default function Home(){
 
                     <div className="block">
                         <button class="button is-success">Create Flashcards</button>
-                    </div>
-                             
+                    </div>                          
                 </div>
-
 
                 <div className="hero-foot center">
                     <p>Github</p>
