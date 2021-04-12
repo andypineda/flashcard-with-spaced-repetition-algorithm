@@ -55,3 +55,27 @@
 #quizbox{
   display: none;
 }
+
+
+
+/* Score Box */
+#scorebox{
+  display: none;
+}
+
+
+
+/*  ANSWER BOX  */
+
+.answerBoxQuiz{
+  width: auto;
+  margin-top: 1em;
+  margin-bottom: 1em;
+}
+
+
+
+.line_display{
+  display: flex;
+  flex-direction: column;
+}
