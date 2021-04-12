@@ -17,7 +17,13 @@ by following the space reptition algorithm and setting up a percentage based on 
 
 
 ## Example 
-Test out the application at 
+
+
+<p align="center">
+ <img align="center" alt="start up" src="images/flash_cards_pic.png" />
+</p>
+
+
 
 
 

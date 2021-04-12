@@ -5,6 +5,7 @@ import create from '../styles/Create.module.css'
 import Link from 'next/link'
 import { useState } from "react"
 import { Router, useRouter } from 'next/router'
+import Head from 'next/head'
 
 // Load Chance
 var Chance = require('chance');
@@ -796,7 +797,7 @@ export default function Create(){
                 <title>FlashCards</title>
             </Head>
 
-            
+
             <section className="hero is-fullheight is-info">
                 <div className="hero-head center">
                     <div className={`block ${styles.title}`}>
