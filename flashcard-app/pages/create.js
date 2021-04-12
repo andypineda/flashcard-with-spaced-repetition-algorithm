@@ -12,7 +12,8 @@ export default function Create(){
 
     /* 
 
-        Takes the information from the flash card and appends it to the flashcard array 
+        Grabs the information for create a flash card entry box and turns it into a card 
+        then appends it to the collection of FlashCards
 
     */ 
 
@@ -33,7 +34,7 @@ export default function Create(){
         while(count <= answerCount){
 
             let questionID = 'question_' + count.toString() 
-            
+
             // Checks to see if the radio button is checked 
             if(document.getElementById(questionID).checked){
                 
@@ -70,11 +71,12 @@ export default function Create(){
 
         // Append it to collection of FlashCards 
         FlashCards.push(Card)
+
+
+        // Clears entry information from flashcard 
+        ClearCard()
+
     }
-
-
-
-
 
 
 
@@ -99,9 +101,13 @@ export default function Create(){
             // Creates the ID's for each text answer input box 
             let answerName = "question_"+quesitonNumber + "_answer"
 
+            // Creates the answer div box id name 
+            let answerBoxID = "answer_box_" + quesitonNumber
+
             //  Create the div box to hold the radio button and answer 
             let divWithRadioButtons = document.createElement('div')
             divWithRadioButtons.className = " control withRadioButton"
+            divWithRadioButtons.id = answerBoxID
 
             // Create the div for the radio box 
             let RadioButtonBox = document.createElement('div')
@@ -111,7 +117,6 @@ export default function Create(){
             let RadioButtonInput = document.createElement('input')
             RadioButtonInput.type = 'radio'
             RadioButtonInput.id = questionName
-            RadioButtonInput.name = "answer"
 
             // Append radio button to RadioButtonBox 
             RadioButtonBox.appendChild(RadioButtonInput)
@@ -159,12 +164,62 @@ export default function Create(){
 
                 // Delete the add question button after 4 questions have been added
                 let addQuestionButton = document.getElementById('addQuestionButton');
-                addQuestionButton.remove();
+                addQuestionButton.style.display = "none"
     
             }
         } 
 
     }
+
+
+
+
+
+
+    /*
+
+        Clears the entry info in create a flash card 
+
+    */ 
+
+    function ClearCard(){
+        console.log('Clearing Card')
+
+        // Clears the question textarea 
+        let textArea = document.getElementById("textAreaQuestion")
+        textArea.value = ""
+
+
+        // Clears each question input 
+        let answers = document.querySelectorAll('input[type="text"]')
+
+        for(let i = 0; i <= answers.length-1; i++){
+            answers[i]['value'] = ""
+
+
+            // Deletes the last two input div answer boxes 
+            if(i >= 2){
+                let answerBoxId = "answer_box_" + i.toString()
+                document.getElementById(answerBoxId).remove()
+                questions = questions - 1 
+
+
+            }
+        }
+
+       
+        
+        // Add the add question back to dashboard 
+        if(answers.length > 1 ){
+            let addQuestionButton = document.getElementById('addQuestionButton');
+            addQuestionButton.style.display = "flex"
+        }
+
+
+    }
+
+
+
 
 
 
@@ -203,9 +258,9 @@ export default function Create(){
                     <div id="answerInput">
 
 
-                        <div className="control withRadioButton">
+                        <div id="answer_box_1" className="control withRadioButton">
                             <div className="control RadioButtonBox">
-                                <input id="question_1" className="control RadioButton" name="answer" type="radio"  checked={true} />
+                                <input id="question_1" className="control RadioButton" type="radio"  defaultChecked={true} />
                             </div>
                             <div className="control answers">
                                 <input id="question_1_answer" class="input" type="text" placeholder="Enter an Answer"></input>
@@ -213,9 +268,9 @@ export default function Create(){
                         </div>
 
 
-                        <div className="withRadioButton">
+                        <div id="answer_box_2" className="control withRadioButton">
                             <div className="control RadioButtonBox">
-                                <input id="question_2" className="control RadioButton" name="answer" type="radio"/>
+                                <input id="question_2" className="control RadioButton" type="radio"/>
                             </div>
                             <div className="control answers">
                                 <input id="question_2_answer" class="input" type="text" placeholder="Enter an Answer"></input>
