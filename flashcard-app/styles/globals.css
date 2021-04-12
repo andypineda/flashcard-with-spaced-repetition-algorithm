@@ -50,3 +50,10 @@
 #timer{
   display: none;
 }
+
+
+/*  Flashcard Quiz  */
+
+#StartQuiz{
+  display: none;
+}

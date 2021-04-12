@@ -19,6 +19,11 @@ export default function Create(){
     
     // Nextjs router to push to a next page
     const router = useRouter()
+
+
+    // Set the quiz start countdown for 10 seconds 
+    // 1000 = 1 second 
+    let [startCountDown, setStartCountDown] = useState(10)
     
     
 
@@ -271,15 +276,36 @@ export default function Create(){
 
 
         console.log('Starting Quiz')
-        router.push({
-            pathname: '/start',
-            query: { data: FlashCards},
-        })
+        document.getElementById('timer').style.display = 'none !important' // Hide the timer box 
+        document.getElementById('StartQuiz').style.display = 'flex !important' // Show the flashcard quiz 
 
+        // Start the quiz countdown 
+        StartQuizCountDown()
     }
 
 
 
+    /*
+
+        Start the quiz countdown 
+        Start a timer to let the user know that the quiz will begin in 10 seconds so they are fully prepared 
+
+    */ 
+
+    function StartQuizCountDown(){
+
+        let start = 10
+        
+        setInterval(function(){ 
+            
+            console.log(start)
+            start = start - 1
+
+
+        }, 1000);
+
+
+    }
 
 
     return(
@@ -392,6 +418,14 @@ export default function Create(){
 
 
 
+
+
+
+
+                {/* START THE FLASHCARDS QUIZ */}
+                <div id="StartQuiz" className={`hero-body box center ${create.createBox}`} >
+                    <p>Starting Quiz in {startCountDown} </p> 
+                </div>
 
 
 
