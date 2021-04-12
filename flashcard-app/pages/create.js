@@ -26,8 +26,23 @@ export default function Create(){
         console.log(question)
 
         // Gets the count of how many possible answers were created by counting how many radio buttons are displayd in the DOM 
-        let answerCount = document.getElementsByName('answer').length
+        let answerCount = document.querySelectorAll('input[type="radio"]').length
         console.log(answerCount)
+
+
+        // Display the question that is correct 
+        let count = 1 
+        let questionID = 'question_' + count 
+
+        while(count <= answerCount){
+            if(document.getElementById(questionID).checked === true){
+                console.log(document.getElementById(questionID).value)
+            }
+            count  += 1
+        }
+
+        
+        
 
         
 
@@ -54,8 +69,10 @@ export default function Create(){
     function AddAnotherQuestion(){
 
         if(questions <= 4 ){
-            
-            
+
+
+            let quesitonNumber = questions.toString
+            let questionName = 'question_' + quesitonNumber  // Track question count 
 
             //  Create the div box to hold the radio button and answer 
             let divWithRadioButtons = document.createElement('div')
@@ -68,7 +85,7 @@ export default function Create(){
             // Create radio button
             let RadioButtonInput = document.createElement('input')
             RadioButtonInput.type = 'radio'
-            RadioButtonInput.name = "answer"
+            RadioButtonInput.id = questionName
 
             // Append radio button to RadioButtonBox 
             RadioButtonBox.appendChild(RadioButtonInput)
@@ -161,7 +178,7 @@ export default function Create(){
 
                         <div className="control withRadioButton">
                             <div className="control RadioButtonBox">
-                                <input type="radio" name="answer"/>
+                                <input id="question_1" type="radio" />
                             </div>
                             <div className="control answers">
                                 <input class="input" type="text" placeholder="Enter an Answer"></input>
@@ -171,7 +188,7 @@ export default function Create(){
 
                         <div className="withRadioButton">
                             <div className="control RadioButtonBox">
-                                <input className="control RadioButton" type="radio" name="answer"/>
+                                <input id="question_2" className="control RadioButton" type="radio"/>
                             </div>
                             <div className="control answers">
                                 <input class="input" type="text" placeholder="Enter an Answer"></input>
