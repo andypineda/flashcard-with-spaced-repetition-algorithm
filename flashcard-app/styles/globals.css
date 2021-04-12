@@ -8,3 +8,37 @@
 }
 
 
+.textarea{
+  width:400px !important;
+}
+
+
+
+
+
+
+
+/* CREATING A FLASHCARD */
+.answers{
+  width: 350px;
+}
+
+.answers{
+  margin-top:0.5em;
+  margin-bottom:0.5em;
+}
+
+.withRadioButton{
+  display: flex;
+  flex-direction: row;
+}
+
+.RadioButtonBox{
+  margin-right: 1em;
+  height: 56px;
+  width: 13px;
+}
+
+.RadioButton{
+  margin-top: 10px;
+}

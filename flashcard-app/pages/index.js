@@ -1,6 +1,6 @@
 import 'bulma/css/bulma.css'
 import styles from '../styles/Home.module.css'
-
+import Link from 'next/link'
 
 export default function Home(){
 
@@ -9,7 +9,9 @@ export default function Home(){
             <section className="hero is-fullheight is-info">
                 <div className="hero-head center">
                     <div className={`block ${styles.title}`}>
-                        <p className="title">FLASHCARDS</p>
+                        <Link href="http://localhost:3000/">
+                            <p className="title">FLASHCARDS</p>
+                        </Link>
                     </div>
                 </div>
 
@@ -27,7 +29,9 @@ export default function Home(){
                     </div>
 
                     <div className="block">
-                        <button class="button is-success">Create Flashcards</button>
+                        <Link href="http://localhost:3000/create">
+                            <button class="button is-success">Create Flashcards</button>
+                        </Link>
                     </div>                          
                 </div>
 
@@ -38,3 +42,7 @@ export default function Home(){
         </>
     )
 }
+
+
+
+
