@@ -1,9 +1,18 @@
 import 'bulma/css/bulma.css'
+import 'chance'
 import styles from '../styles/Home.module.css'
 import create from '../styles/Create.module.css'
 import Link from 'next/link'
 import { useState } from "react"
 import { Router, useRouter } from 'next/router'
+import { useEffect } from "react"
+
+// Load Chance
+var Chance = require('chance');
+
+// Instantiate Chance so it can be used
+var chance = new Chance();
+
 
 
 export default function Create(){
@@ -21,11 +30,33 @@ export default function Create(){
     const router = useRouter()
 
 
+
+    // ------------  TIMERS -----------
+
     // Set the quiz start countdown for 10 seconds 
     // 1000 = 1 second 
     let [startCountDown, setStartCountDown] = useState(10)
     
+    // Set the quiz time 
+    let TotalQuizTime = 0
     
+
+
+    // ------- Spaced Repetition ----------- 
+    let blocks = [[],[],[],[],[]]
+    blocks[0] = FlashCards
+
+    let [score, setScore] = useState(0)
+
+
+
+
+
+
+
+
+
+
 
 
     /* 
@@ -261,6 +292,27 @@ export default function Create(){
 
 
 
+
+
+    // Set the quiz time 
+    function ConvertQuizTime(){
+        // Gets the quiz time 
+        let quizTime = document.getElementById('quizTime').value
+
+        // Covert time to milliseconds 
+        let minutes = quizTime.split(':')[0]
+        let seconds = quizTime.split(':')[1]
+
+        let minutesToMilli = minutes * 60000
+        let secondsToMilli = seconds * 1000 
+        let time = minutesToMilli + secondsToMilli
+
+        // Set the total time for quiz in milliseconds 
+        TotalQuizTime = time
+    }
+
+
+
     /* 
         START 
         Get all the flashcards and quiz time and start the flashcard learning 
@@ -268,11 +320,7 @@ export default function Create(){
 
     function StartQuiz(){
         
-
-        // Gets the quiz time 
-        let quizTime = document.getElementById('quizTime').value
-        // Adds the time to the FlashCards array 
-        setFlashCards(FlashCards.concat(quizTime))
+        ConvertQuizTime()
 
 
         console.log('Starting Quiz')
@@ -294,6 +342,7 @@ export default function Create(){
 
     function StartQuizCountDown(){
 
+        // Initiate clock at 10 seconds 
         let start = 10
         
         let startID = setInterval(function(){ 
@@ -310,9 +359,90 @@ export default function Create(){
         }, 1000);
 
 
+        // Set the quiz time 
+        PickQuestion()
+
+    }
+
+
+
+    // Choose box 
+    function ChooseBox(){
+        let randomBox = chance.weighted(['1', '2','3','4','5'], [50,26,14,7,3])
+        return randomBox
+    }
+
+
+    // Random integer between 1 and array length 
+    function getRndInteger(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) ) + min;
+    }
+
+
+
+    // Pick a question and start time 
+    function PickQuestion(){
+
+        // picks a random block based off weighted numbers 
+        let block = ChooseBox()
+
+
+
+        // Get a question from one of the 5 levels of blocks 
+        if(blocks[block].length != 0 ){
+            // Do the rest of the work here 
+            console.log('BLOCK NOT 0',blocks[block])
+
+            // Access the questions in the block
+            let BlockArray = blocks[block]
+
+            console.log(BlockArray)
+
+            let randomInt = getRndInteger(0,BlockArray.length -1) // Get a random question from 0 to the max amount of questions in the array
+            let randomQuestion = BlockArray[randomInt] // Picks the random question 
+
+            return [randomQuestion,block]
+
+
+        } else {
+
+            // Look for a block level that is not empty and show the result 
+            for(let i=0; i < blocks.length; i++){
+                if(blocks[i] != 0){
+
+                    console.log('BLOCK WAS ZERO',)
+                    // Access the questions in the block
+                    let BlockArray = blocks[i]
+
+                    console.log(BlockArray)
+
+
+                    let randomInt = getRndInteger(0,BlockArray.length - 1) // Get a random question from 0 to the max amount of questions in the array
+                    console.log('random is',randomInt)
+
+                    let randomQuestion = BlockArray[randomInt]
+
+                    return [randomQuestion,block]
+                }
+            }
+        }
+
+
+
 
 
     }
+
+
+
+
+
+
+
+
+
+
+
 
 
     return(
