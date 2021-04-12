@@ -1,10 +1,10 @@
-## FLASHCARDS 
+# FLASHCARDS 
 Create flashcards and study them using spaced reptiton 
 
 Spaced repetition is a technique for efficient memorization which uses repeated review of content following a schedule determined by a spaced repetition algorithm to improve long-term retention.
 
 
-### How It Works 
+## How It Works 
 
 The FlashCards App creates 5 different blocks to store your flashcards. Those 5 blocks determine the chance of a flashcard appearing. Percentages are determined 
 by following the space reptition algorithm and setting up a percentage based on how often you should be studying based off questions you find easy to the most difficult. 
@@ -16,13 +16,13 @@ by following the space reptition algorithm and setting up a percentage based on 
 - Block 5: 3%  >  Superior 
 
 
-### Example 
+## Example 
 Test out the application at 
 
 
 
 
-# SET UP 
+## SET UP 
 
 Clone the repoistry 
 ```bash
