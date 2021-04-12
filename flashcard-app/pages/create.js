@@ -792,6 +792,11 @@ export default function Create(){
 
     return(
         <>
+            <Head>
+                <title>FlashCards</title>
+            </Head>
+
+            
             <section className="hero is-fullheight is-info">
                 <div className="hero-head center">
                     <div className={`block ${styles.title}`}>

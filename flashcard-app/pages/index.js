@@ -1,11 +1,15 @@
 import 'bulma/css/bulma.css'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
+import Head from 'next/head'
 
 export default function Home(){
 
     return(
         <>
+            <Head>
+                <title>FlashCards</title>
+            </Head>
             <section className="hero is-fullheight is-info">
                 <div className="hero-head center">
                     <div className={`block ${styles.title}`}>
