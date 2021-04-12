@@ -6,7 +6,6 @@ Spaced repetition is a technique for efficient memorization which uses repeated 
 ## LIVE APP 
 You can test the app out at [FLASHCARD APP](https://flashcards-pineda.vercel.app/) 
 
-
 ## How It Works 
 
 The FlashCards App creates 5 different blocks to store your flashcards. Those 5 blocks determine the chance of a flashcard appearing. Percentages are determined 

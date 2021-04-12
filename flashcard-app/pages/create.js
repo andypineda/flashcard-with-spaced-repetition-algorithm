@@ -655,7 +655,7 @@ export default function Create(){
         // Add 2pts to score 
         score = score + 2
 
-        window.alert('You are correct');
+        window.alert('You are correct, the answer is '+ CardQuestion[2].toString());
 
         // Find the flashcard in the block and move it up another level and add two points 
         console.log('current block is')
@@ -700,7 +700,7 @@ export default function Create(){
 
 
     function PickedIncorrectly(CardQuestion){
-        window.alert('You are wrong');
+        window.alert('You are wrong, correct answer is ' + CardQuestion[2].toString());
         score = score - 2
 
         // Loops through each block 
@@ -778,6 +778,9 @@ export default function Create(){
         scoreText.innerHTML = "Your score is " + score.toString()
 
         scoreTextDiv.appendChild(scoreText)
+
+
+
 
     
 
