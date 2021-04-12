@@ -2,11 +2,19 @@ import 'bulma/css/bulma.css'
 import styles from '../styles/Home.module.css'
 import create from '../styles/Create.module.css'
 import Link from 'next/link'
+import { useState } from "react"
 
 export default function Create(){
 
+    // Reset hook for reseting question inputs 
+    let [reset,setReset] = useState(0)
+
+    // Flashcard counter 
+    let [cardCounter,setCardCounter] = useState(0)
+
+    let [FlashCards, setFlashCards ] = useState([])
     //  Hold the flashcards created 
-    let FlashCards = []
+    
     
 
 
@@ -34,6 +42,7 @@ export default function Create(){
         while(count <= answerCount){
 
             let questionID = 'question_' + count.toString() 
+            console.log('ID IS', questionID)
 
             // Checks to see if the radio button is checked 
             if(document.getElementById(questionID).checked){
@@ -69,11 +78,12 @@ export default function Create(){
         Card.push(answer)
         Card.push(date)
 
+        let cards = [Card]
         // Append it to collection of FlashCards 
-        FlashCards.push(Card)
-
+        setFlashCards(flashcard => flashcard.concat(cards))
 
         // Clears entry information from flashcard 
+        count = 0 
         ClearCard()
 
     }
@@ -90,7 +100,7 @@ export default function Create(){
     let questions = 2 // Default of how many answers allowed 
     function AddAnotherQuestion(){
 
-        questions = questions + 1
+        questions = questions + 1 - reset
 
         if(questions <= 4 ){
 
@@ -196,30 +206,65 @@ export default function Create(){
         for(let i = 0; i <= answers.length-1; i++){
             answers[i]['value'] = ""
 
-
-            // Deletes the last two input div answer boxes 
-            if(i >= 2){
-                let answerBoxId = "answer_box_" + i.toString()
-                document.getElementById(answerBoxId).remove()
-                questions = questions - 1 
-
-
-            }
+            // Delete all the input boxes including radio buttons 
+            let x = i + 1
+            let answerBoxId = "answer_box_" + x.toString()
+            document.getElementById(answerBoxId).remove()
+            questions = questions - 1 
         }
-
-       
         
+
+
+        // Create two new entry boxes 
+        setReset(2)
+        AddAnotherQuestion()
+        setReset(1)
+        AddAnotherQuestion()
+        setReset(0)
+
+
+
         // Add the add question back to dashboard 
         if(answers.length > 1 ){
             let addQuestionButton = document.getElementById('addQuestionButton');
             addQuestionButton.style.display = "flex"
         }
 
+        setCardCounter(cardCounter+1)
 
     }
 
 
 
+
+
+    /*
+
+        Displays the step the timer page 
+
+    */
+
+    function SetTimer(){
+        document.getElementById('timer').style.display = "flex"
+        document.getElementById('CreateFlashCards').style.display = "none"
+    }
+
+
+
+    /* 
+        START 
+        Get all the flashcards and quiz time and start the flashcard learning 
+    */
+
+    function StartQuiz(){
+        let quizTime = document.getElementById('quizTime').value
+        console.log(quizTime)
+        
+        setFlashCards(FlashCards.concat(quizTime))
+
+        console.log('Starting Quiz')
+        console.log(FlashCards)
+    }
 
 
 
@@ -237,7 +282,9 @@ export default function Create(){
                 </div>
 
 
-                <div className={`hero-body box center ${create.createBox}`}>
+
+                {/* CREATE A FLASH CARD BODY PAGE  */}
+                <div id="CreateFlashCards" className={`hero-body box center ${create.createBox}`}>
 
                     <div className="block">
                         <p className="subtitle has-text-black">Create Flash Cards</p>
@@ -260,7 +307,7 @@ export default function Create(){
 
                         <div id="answer_box_1" className="control withRadioButton">
                             <div className="control RadioButtonBox">
-                                <input id="question_1" className="control RadioButton" type="radio"  defaultChecked={true} />
+                                <input id="question_1" className="control RadioButton" type="radio" />
                             </div>
                             <div className="control answers">
                                 <input id="question_1_answer" class="input" type="text" placeholder="Enter an Answer"></input>
@@ -290,18 +337,51 @@ export default function Create(){
                     <div>
                         <div class="buttons">
                             <button class="button is-primary" onClick={CreateFlashCard}>Add Card</button>
-                            <button class="button is-danger">Delete Card</button>
+                            <button class="button is-success" onClick={SetTimer}>Next</button>
                         </div>
                     </div>
 
 
                     {/* Flashcard Number */}
                     <div className={`${create.cardNumber}`}>
-                        <p>6/7</p>
+                        <p>{`${cardCounter}/${cardCounter}`}</p>
                     </div>
 
 
                 </div>
+
+
+
+
+
+
+                {/* SET THE TIMER BODY PAGE */}
+                <div id="timer" className={`hero-body box center ${create.createBox}`} >
+                    
+
+                    <div className="has-text-centered" style={{marginTop:'auto',marginBottom:'auto'}}>
+                        <div className="block">
+                            <p> Enter quiz time</p>
+                            <p> For a 3 minute quiz enter 03:00</p>
+                            <input class="input" type="tel" id="quizTime" placeholder="ex. 02:30" pattern="[0-9]{2}:[0-9]{2}" required />
+                        </div>
+
+
+                        <div className="block" style={{marginLeft:'35%'}}>
+                            <div class="buttons">
+                                <button class="button is-success" onClick={StartQuiz}>Start</button>
+                            </div>
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+
+
+
+
 
                 <div className="hero-foot center">
                     <p>Github</p>

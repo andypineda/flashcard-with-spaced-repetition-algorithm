@@ -42,3 +42,11 @@
 .RadioButton{
   margin-top: 10px;
 }
+
+
+
+/*  Timer  */
+
+#timer{
+  display: none;
+}
