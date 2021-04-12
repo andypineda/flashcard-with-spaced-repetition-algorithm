@@ -18,14 +18,20 @@ by following the space reptition algorithm and setting up a percentage based on 
 
 ## Example 
 
-
+### Homescreen 
 <p align="center">
  <img align="center" alt="start up" src="images/flash_cards_pic.png" />
 </p>
 
+### Add Question 
+<p align="center">
+ <img align="center" alt="start up" src="images/add_question.png" />
+</p>
 
-
-
+### Quiz 
+<p align="center">
+ <img align="center" alt="start up" src="images/question.png" />
+</p>
 
 
 ## SET UP 
