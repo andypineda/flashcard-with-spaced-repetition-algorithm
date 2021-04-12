@@ -765,7 +765,7 @@ export default function Create(){
     function EndQuiz(){
 
         window.alert('Your Quiz Has Ended')
-        
+
         // remove the quiz box 
         document.getElementById('quizbox').remove()
         document.getElementById('scorebox').style.display = "flex"
@@ -948,7 +948,9 @@ export default function Create(){
                 </div>
 
                 <div className="hero-foot center">
-                    <p>Github</p>
+                    <a href="https://github.com/andypineda">
+                        <p>Github</p>
+                    </a>
                 </div>
             </section>
         </>

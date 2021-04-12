@@ -36,7 +36,9 @@ export default function Home(){
                 </div>
 
                 <div className="hero-foot center">
-                    <p>Github</p>
+                    <a href="https://github.com/andypineda">
+                        <p>Github</p>
+                    </a>
                 </div>
             </section>
         </>
