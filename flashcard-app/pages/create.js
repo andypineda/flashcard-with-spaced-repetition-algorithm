@@ -23,33 +23,53 @@ export default function Create(){
 
         // Gets the question for the flashcard 
         let question = document.getElementById("textAreaQuestion").value
-        console.log(question)
 
         // Gets the count of how many possible answers were created by counting how many radio buttons are displayd in the DOM 
         let answerCount = document.querySelectorAll('input[type="radio"]').length
-        console.log(answerCount)
-
 
         // Display the question that is correct 
         let count = 1 
-        let questionID = 'question_' + count 
-
+        let answer = "" // holds the correct answer for the question 
         while(count <= answerCount){
-            if(document.getElementById(questionID).checked === true){
-                console.log(document.getElementById(questionID).value)
+
+            let questionID = 'question_' + count.toString() 
+            
+            // Checks to see if the radio button is checked 
+            if(document.getElementById(questionID).checked){
+                
+                // Gets the question that matches the radio button for the correct answer 
+                let answerID = "question_"+count.toString()+"_answer"
+                answer = document.getElementById(answerID).value // Assigns the answer to the answer variable 
             }
+
             count  += 1
         }
 
-        
-        
-
-        
 
 
+        // Gets all the questions 
+        let answers = document.querySelectorAll('input[type="text"]')
+        let inputQuestions = []
+
+        // Turn the node data from answers and push the value into  the inputquestions array 
+        for(let i = 0; i <= answers.length-1; i++){
+            inputQuestions.push(answers[i]['value']); 
+        }
+      
+
+        // Get the current date information 
+        let today = new Date();
+        let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
 
-        
+        // Append the information to the card array 
+        Card.push(question)
+        Card.push(inputQuestions)
+        Card.push(answer)
+        Card.push(date)
+
+        // Append it to collection of FlashCards 
+        FlashCards.push(Card)
     }
 
 
@@ -68,11 +88,16 @@ export default function Create(){
     let questions = 2 // Default of how many answers allowed 
     function AddAnotherQuestion(){
 
+        questions = questions + 1
+
         if(questions <= 4 ){
 
-
-            let quesitonNumber = questions.toString
+            // Creates the id's for each radio button box 
+            let quesitonNumber = questions.toString()
             let questionName = 'question_' + quesitonNumber  // Track question count 
+
+            // Creates the ID's for each text answer input box 
+            let answerName = "question_"+quesitonNumber + "_answer"
 
             //  Create the div box to hold the radio button and answer 
             let divWithRadioButtons = document.createElement('div')
@@ -86,6 +111,7 @@ export default function Create(){
             let RadioButtonInput = document.createElement('input')
             RadioButtonInput.type = 'radio'
             RadioButtonInput.id = questionName
+            RadioButtonInput.name = "answer"
 
             // Append radio button to RadioButtonBox 
             RadioButtonBox.appendChild(RadioButtonInput)
@@ -102,6 +128,7 @@ export default function Create(){
             input.type = "text";
             input.className = "input";
             input.placeholder = "Enter an Answer"
+            input.id = answerName
             
             // Add the input field to the answer div container 
             AnswerBox.appendChild(input)
@@ -121,7 +148,7 @@ export default function Create(){
             document.getElementById('answerInput').appendChild(divWithRadioButtons)
 
 
-            questions = questions + 1
+            
 
 
 
@@ -178,20 +205,20 @@ export default function Create(){
 
                         <div className="control withRadioButton">
                             <div className="control RadioButtonBox">
-                                <input id="question_1" type="radio" />
+                                <input id="question_1" className="control RadioButton" name="answer" type="radio"  checked={true} />
                             </div>
                             <div className="control answers">
-                                <input class="input" type="text" placeholder="Enter an Answer"></input>
+                                <input id="question_1_answer" class="input" type="text" placeholder="Enter an Answer"></input>
                             </div>
                         </div>
 
 
                         <div className="withRadioButton">
                             <div className="control RadioButtonBox">
-                                <input id="question_2" className="control RadioButton" type="radio"/>
+                                <input id="question_2" className="control RadioButton" name="answer" type="radio"/>
                             </div>
                             <div className="control answers">
-                                <input class="input" type="text" placeholder="Enter an Answer"></input>
+                                <input id="question_2_answer" class="input" type="text" placeholder="Enter an Answer"></input>
                             </div>
                         </div>
 
