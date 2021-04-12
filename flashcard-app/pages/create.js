@@ -3,6 +3,8 @@ import styles from '../styles/Home.module.css'
 import create from '../styles/Create.module.css'
 import Link from 'next/link'
 import { useState } from "react"
+import { Router, useRouter } from 'next/router'
+
 
 export default function Create(){
 
@@ -12,8 +14,11 @@ export default function Create(){
     // Flashcard counter 
     let [cardCounter,setCardCounter] = useState(0)
 
+    // Hold all flashcards in array 
     let [FlashCards, setFlashCards ] = useState([])
-    //  Hold the flashcards created 
+    
+    // Nextjs router to push to a next page
+    const router = useRouter()
     
     
 
@@ -257,13 +262,20 @@ export default function Create(){
     */
 
     function StartQuiz(){
-        let quizTime = document.getElementById('quizTime').value
-        console.log(quizTime)
         
+
+        // Gets the quiz time 
+        let quizTime = document.getElementById('quizTime').value
+        // Adds the time to the FlashCards array 
         setFlashCards(FlashCards.concat(quizTime))
 
+
         console.log('Starting Quiz')
-        console.log(FlashCards)
+        router.push({
+            pathname: '/start',
+            query: { data: FlashCards},
+        })
+
     }
 
 
