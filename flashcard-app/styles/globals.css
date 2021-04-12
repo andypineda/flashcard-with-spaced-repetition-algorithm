@@ -52,8 +52,6 @@
 }
 
 
-/*  Flashcard Quiz  */
-
-#StartQuiz{
+#quizbox{
   display: none;
 }

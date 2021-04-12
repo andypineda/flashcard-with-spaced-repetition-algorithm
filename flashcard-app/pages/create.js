@@ -276,8 +276,8 @@ export default function Create(){
 
 
         console.log('Starting Quiz')
-        document.getElementById('timer').style.display = 'none !important' // Hide the timer box 
-        document.getElementById('StartQuiz').style.display = 'flex !important' // Show the flashcard quiz 
+        document.getElementById('timer').style.display = "none"
+        document.getElementById("quizbox").style.display = "flex" // Show the flashcard quiz 
 
         // Start the quiz countdown 
         StartQuizCountDown()
@@ -296,13 +296,20 @@ export default function Create(){
 
         let start = 10
         
-        setInterval(function(){ 
+        let startID = setInterval(function(){ 
             
-            console.log(start)
+            
             start = start - 1
+            setStartCountDown(start)
 
+            if(start == 0){
+                clearInterval(startID)
+                console.log('Timer Ended')
+            }
 
         }, 1000);
+
+
 
 
     }
@@ -423,8 +430,14 @@ export default function Create(){
 
 
                 {/* START THE FLASHCARDS QUIZ */}
-                <div id="StartQuiz" className={`hero-body box center ${create.createBox}`} >
-                    <p>Starting Quiz in {startCountDown} </p> 
+                <div id="quizbox" className={`hero-body box center ${create.createBox}`}>
+                    {/* Counter */}
+                    <div className="box" id="count_down_box">
+                        <p className="title has-text-black">{startCountDown}</p>
+                    </div>
+
+                    <p>Ready</p>
+
                 </div>
 
 
