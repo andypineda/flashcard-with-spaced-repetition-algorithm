@@ -801,7 +801,7 @@ export default function Create(){
             <section className="hero is-fullheight is-info">
                 <div className="hero-head center">
                     <div className={`block ${styles.title}`}>
-                        <Link href="http://localhost:3000/">
+                        <Link href="https://flashcards-pineda.vercel.app/">
                             <p className="title">FLASHCARDS</p>
                         </Link>
                     </div>

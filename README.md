@@ -3,6 +3,9 @@ Create flashcards and study them using spaced reptiton
 
 Spaced repetition is a technique for efficient memorization which uses repeated review of content following a schedule determined by a spaced repetition algorithm to improve long-term retention.
 
+## LIVE APP 
+You can test the app out at [FLASHCARD APP](https://flashcards-pineda.vercel.app/) 
+
 
 ## How It Works 
 
