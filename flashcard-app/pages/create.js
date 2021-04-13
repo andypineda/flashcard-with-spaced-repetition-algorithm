@@ -500,7 +500,10 @@ export default function Create(){
                 clearInterval(startID)
                 console.log('Timer Ended')
 
-                SubmitAnswer(TimerRanOut = true)
+                let TimerRanOut = true
+                let CardQuestion =[]
+                let block = 0
+                SubmitAnswer(CardQuestion,block,TimerRanOut)
             }
 
         }, 1000);    
