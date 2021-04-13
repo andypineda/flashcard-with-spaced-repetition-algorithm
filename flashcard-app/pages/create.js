@@ -178,6 +178,7 @@ export default function Create(){
             let RadioButtonInput = document.createElement('input')
             RadioButtonInput.type = 'radio'
             RadioButtonInput.id = questionName
+            RadioButtonInput.name = "QuestionRadioButton"
 
             // Append radio button to RadioButtonBox 
             RadioButtonBox.appendChild(RadioButtonInput)
@@ -829,7 +830,7 @@ export default function Create(){
 
                         <div id="answer_box_1" className="control withRadioButton">
                             <div className="control RadioButtonBox">
-                                <input id="question_1" className="control RadioButton" type="radio" />
+                                <input id="question_1" className="control RadioButton" type="radio" name="QuestionRadioButton" />
                             </div>
                             <div className="control answers">
                                 <input id="question_1_answer" class="input" type="text" placeholder="Enter an Answer"></input>
@@ -839,7 +840,7 @@ export default function Create(){
 
                         <div id="answer_box_2" className="control withRadioButton">
                             <div className="control RadioButtonBox">
-                                <input id="question_2" className="control RadioButton" type="radio"/>
+                                <input id="question_2" className="control RadioButton" type="radio" name="QuestionRadioButton"/>
                             </div>
                             <div className="control answers">
                                 <input id="question_2_answer" class="input" type="text" placeholder="Enter an Answer"></input>
