@@ -35,7 +35,7 @@ export default function Create(){
 
     // Set the quiz start countdown for 10 seconds 
     // 1000 = 1 second 
-    let [startCountDown, setStartCountDown] = useState(10)
+    let [startCountDown, setStartCountDown] = useState(5)
     
     // Set the quiz time 
     let TotalQuizTime = 0
@@ -352,8 +352,8 @@ export default function Create(){
 
     function StartQuizCountDown(){
 
-        // Initiate clock at 10 seconds 
-        let start = 10
+        // Initiate clock at 5 seconds 
+        let start = 5
         
         let startID = setInterval(function(){ 
             
@@ -510,10 +510,10 @@ export default function Create(){
 
 
     // Builds the flashcard layout 
-    function BuildCard(CardQueston,block){
+    function BuildCard(CardQuestion,block){
 
-        let MainQuestion = CardQueston[0] // question 
-        let PossibleAnswers = CardQueston[1] // possible answer 
+        let MainQuestion = CardQuestion[0] // question 
+        let PossibleAnswers = CardQuestion[1] // possible answer 
 
         // Disable and enable the question text area to add the main question 
         document.getElementById('mainQuestion').innerHTML = MainQuestion
@@ -534,7 +534,7 @@ export default function Create(){
         AnswerButton.innerHTML = "Answer"
         AnswerButton.style = "margin: 0 auto"
         AnswerButton.onclick = function(){
-            SubmitAnswer(CardQueston,block)
+            SubmitAnswer(CardQuestion,block)
         }
 
         let FlashCardQuizBox = document.getElementById('NewCard')
@@ -605,17 +605,17 @@ export default function Create(){
 
 
     // Takes the users answer input and checks to see if they are correct 
-    function SubmitAnswer(CardQueston,block,TimerRanOut = false){
+    function SubmitAnswer(CardQuestion,block,TimerRanOut = false){
 
         // See if the user picked the correct answer
-        let correctAnswer = 'radio_button_' + CardQueston[2].split(" ").join("-")
+        let correctAnswer = 'radio_button_' + CardQuestion[2].split(" ").join("-")
         // Gets correct answer 
         let ChooseCorrectly  = document.getElementById(correctAnswer).checked 
        
 
         // If the timer ran out 
         if(TimerRanOut == true){
-            PickedIncorrectly(CardQueston)
+            PickedIncorrectly(CardQuestion)
             ClearQuizCards()
             PresentCards()
 
@@ -627,13 +627,13 @@ export default function Create(){
         // If chose correctly then move question to next block level and add 2 points 
         if(ChooseCorrectly == true){
 
-            PickedCorrect(CardQueston)
+            PickedCorrect(CardQuestion)
             ClearQuizCards()
             PresentCards()
             
 
         } else {
-            PickedIncorrectly(CardQueston)
+            PickedIncorrectly(CardQuestion)
             ClearQuizCards()
             PresentCards()
         }
@@ -650,7 +650,7 @@ export default function Create(){
 
 
     // Steps to resolve when selecting correct answer 
-    function PickedCorrect(CardQueston){
+    function PickedCorrect(CardQuestion){
         
         // Add 2pts to score 
         score = score + 2
@@ -673,7 +673,7 @@ export default function Create(){
                 // Loops through each array 
                 index.map(array =>{ 
                     // If the id's match return the index of the card in the block 
-                    if(array[4] == CardQueston[4]){
+                    if(array[4] == CardQuestion[4]){
 
                         console.log('block count is',blockCount)
                         // Add it to the fifth block
