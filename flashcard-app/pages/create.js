@@ -500,10 +500,9 @@ export default function Create(){
                 clearInterval(startID)
                 console.log('Timer Ended')
 
-                let TimerRanOut = true
-                let CardQuestion =[]
-                let block = 0
-                SubmitAnswer(CardQuestion,block,TimerRanOut)
+                PickedIncorrectly(CardQuestion)
+                ClearQuizCards()
+                PresentCards()
             }
 
         }, 1000);    
@@ -608,22 +607,13 @@ export default function Create(){
 
 
     // Takes the users answer input and checks to see if they are correct 
-    function SubmitAnswer(CardQuestion,block,TimerRanOut = false){
+    function SubmitAnswer(CardQuestion,block){
 
         // See if the user picked the correct answer
         let correctAnswer = 'radio_button_' + CardQuestion[2].split(" ").join("-")
         // Gets correct answer 
         let ChooseCorrectly  = document.getElementById(correctAnswer).checked 
-       
-
-        // If the timer ran out 
-        if(TimerRanOut == true){
-            PickedIncorrectly(CardQuestion)
-            ClearQuizCards()
-            PresentCards()
-
-            
-        }
+    
 
 
 
