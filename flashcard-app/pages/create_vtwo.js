@@ -4,7 +4,6 @@ import Link from 'next/link'
 import Head from 'next/head'
 import { useRouter } from 'next/router'
 import { useEffect, useState } from "react"
-
 import 'bulma/css/bulma.css'
 
 
@@ -270,7 +269,7 @@ export default function Create(){
 
             let questionID = 'question_' + count.toString() 
             console.log('ID IS', questionID)
-
+            
             // Checks to see if the radio button is checked 
             if(document.getElementById(questionID).checked){
                 
@@ -298,11 +297,12 @@ export default function Create(){
         let date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
 
 
-        // Append the information to the card array 
+        // Append the information to the card array
         Card.push(question)
         Card.push(inputQuestions)
         Card.push(answer)
         Card.push(date)
+      
 
         
 

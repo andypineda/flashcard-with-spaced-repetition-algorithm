@@ -97,6 +97,8 @@
 }
 
 
+
+
 /*  Create Flashcard Page */
 
 .DeleteButton{
@@ -109,4 +111,14 @@
 .addRemoveButtons{
   display: flex;
   align-items: stretch;
+}
+
+.createAnswerButton{
+  width: 33px;
+  height: 30px;
+  margin-top: 1em;
+}
+
+.enterAnswerInput{
+  margin-left: 1em;
 }

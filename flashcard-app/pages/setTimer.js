@@ -3,7 +3,7 @@ import styles from '../styles/Home.module.css'
 import create from '../styles/Create.module.css'
 import Link from 'next/link'
 import { useState } from "react"
-import { Router, useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 import Head from 'next/head'
 
 
@@ -43,6 +43,8 @@ export default function SetTimer(){
         let Name = router.query['name']
         router.push({ pathname: '/start', query: { name: Name, minutes:Minutes, seconds:Seconds}})
     }
+
+
 
     return(
         <>  

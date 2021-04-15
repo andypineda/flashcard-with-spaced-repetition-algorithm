@@ -20,6 +20,15 @@ export async function Create(name){
     // Create a new user in the database
     const data = await db.collection('user').insertOne({user:name});
     let CreateFlashcardsArray = await db.collection('user').updateOne({'user':name},{$set:{flashcards:[]}})
+    let CreateBlocksArray = await db.collection('user').updateOne({'user':name},{$set:{blocks:[]}})
+
+    //  Create blocks 
+    let count = 1 
+    while(count <= 5){
+        let CreateBlock = await db.collection('user').updateOne({'user':name},{$push:{blocks:[]}})
+        count = count + 1
+    }   
+    
 
     return data
 }
