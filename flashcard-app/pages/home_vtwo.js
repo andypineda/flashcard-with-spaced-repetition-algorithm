@@ -2,6 +2,7 @@ import 'bulma/css/bulma.css'
 import styles from '../styles/Home.module.css'
 import Link from 'next/link'
 import Head from 'next/head'
+import { useRouter } from 'next/router'
 
 
 
@@ -21,7 +22,12 @@ import Head from 'next/head'
 export default function Home(){
 
 
+    //Router to redirect user to pages 
+	const router = useRouter()
 
+
+    // Makes a GET request to the find user api 
+    // to see if user exist already in database 
     async function Check(){
         // Gets the displayname from the user input field 
         const UserInput = document.getElementById("name").value 
@@ -44,10 +50,34 @@ export default function Home(){
         return results
     }
 
+    // Creates a single entry in the database with the username
+    async function Create(){
+        // Gets the displayname from the user input field 
+        const UserInput = document.getElementById("name").value 
+
+        // Creates the API url with the name as a query parms 
+        let url = new URL('http://localhost:3000/api/createUser')
+        url.search = new URLSearchParams({
+            name: UserInput
+        })
+
+        // Calls the API to see if user exist 
+        const results = await fetch(url)
+        .then(function(response) {
+            return response.json()
+        })
+        .catch(function (error){
+            console.warn('Something went wrong creating user', error)
+        })  
+
+        return results
+    }
 
 
-    // Makes a GET request to the find user api 
-    // to see if user exist already in database 
+
+
+
+    // Checks if user exist when user clicks Find User button
     async function DoesUserExist(){
 
         // Checks database to see if user exist 
@@ -88,7 +118,20 @@ export default function Home(){
         const result = await Check()
 
         if(result != true){
+
+
             console.log('Creating user')
+            const creating = await Create()
+            
+
+            // Gets the displayname from the user input field 
+            const UserInput = document.getElementById("name").value 
+
+            // Reroute user to create flashcards page and pass in their username as a query 
+            router.push({ pathname: '/create_vtwo', query: { name: UserInput}})
+
+
+
         } else { 
 
             // Removes any other error message 
@@ -110,6 +153,10 @@ export default function Home(){
         }
         
     }
+
+
+
+
 
 
     return(

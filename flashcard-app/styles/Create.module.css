@@ -3,6 +3,7 @@
 .createBox{
     height: auto;
     width:  800px;
+    
 }
 
 .questionContainer{
@@ -15,7 +16,8 @@
 
 
 .createBox{
-    margin-top: 1em;
+    margin-top: 3em;
+    margin-bottom: auto;
 }
 
 .createBox{

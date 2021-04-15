@@ -95,3 +95,18 @@
 #DoesNotExist , #DoesExist{
   display: none;
 }
+
+
+/*  Create Flashcard Page */
+
+.DeleteButton{
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: 7px;
+}
+
+
+.addRemoveButtons{
+  display: flex;
+  align-items: stretch;
+}
