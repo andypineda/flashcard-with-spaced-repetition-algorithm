@@ -90,3 +90,8 @@
 .userButton{
   margin-left: 1em;
 }
+
+
+#DoesNotExist , #DoesExist{
+  display: none;
+}
