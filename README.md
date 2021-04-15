@@ -49,6 +49,12 @@ Go into the flashcard-app folder and install the application
   npm install 
 ```
 
+Install requirements 
+```bash
+  npm install 
+```
+
+
 Start the application 
 ```bash
   npm run dev 

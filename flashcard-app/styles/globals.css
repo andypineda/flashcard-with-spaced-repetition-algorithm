@@ -1,6 +1,4 @@
 
-
-
 /* Allignment */
 
 .center{
@@ -80,4 +78,15 @@
 .line_display{
   display: flex;
   flex-direction: column;
+}
+
+
+
+/* VERSION 2.0 */
+
+
+/* Home Page - Info Card */
+
+.userButton{
+  margin-left: 1em;
 }
