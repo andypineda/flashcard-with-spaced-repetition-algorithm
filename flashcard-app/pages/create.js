@@ -198,8 +198,8 @@ export default function Create(){
             input.id = answerName
             
             // Add the input field to the answer div container 
-            AnswerBox.appendChild(input)
-
+            AnswerBox.appendChild(input)   
+         
 
 
 
